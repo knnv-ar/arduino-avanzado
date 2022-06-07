@@ -1,0 +1,62 @@
+#N canvas 247 44 500 562 10;
+#X declare -lib moocow;
+#X obj -187 114 select 0 1;
+#X obj -187 81 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg -187 163 close;
+#X msg -56 168 ports;
+#X obj -106 237 route ports;
+#X obj -106 259 print port_list;
+#X msg 80 106 pollintervall 10;
+#X obj -187 296 select 10 13;
+#X floatatom -187 391 5 0 0 0 - - -;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Graph 255 float 0;
+#X coords 0 1023 254 0 200 140 1;
+#X restore 38 389 graph;
+#X msg -187 498 \; Graph \$1 \$2;
+#X obj -187 473 pack 0 0;
+#X obj -187 417 t b f;
+#X obj -187 327 zl group 4;
+#X obj 69 144 import moocow;
+#X obj -187 349 bytes2any;
+#X obj 69 68 loadbang;
+#X obj -187 446 counter 0 254;
+#X msg -137 163 open 3;
+#X obj -187 215 comport 3 9600;
+#X text -148 390 entrada analógica de arduino;
+#X text -166 80 ON/OFF;
+#X text 82 86 lee el buffer serie cada 10 ms;
+#X text 76 125 importa la lib moocow [bytes2any];
+#X text -12 167 imprime puertos disponibles;
+#X text -121 348 Convierte valores bytes a formato de mensajes Pd;
+#X text -208 -19 Graph Este patch toma una cadena de bytes \, la cual
+contiene números de 0 a 1023 \, con un retorno de carro y un salto
+de línea al final. Convierte la cadena de texto a enteros y la grafica.
+27 Sept 2010 por Scott Fitzgerald y Dan Mikesell.;
+#X text -106 291 Si obtiene salto de línea (ASCII 10) \, envía la lista.
+Si obtiene retorno de carro (ASCII 13) no hace nada. Cualquier otro
+valor \, lo agrega a la lista.;
+#X text -207 34 ASCII 10: Salto de línea (Line feed): /n ASCII 13:
+Retorno de carro (Carriage return): /r;
+#X connect 0 0 2 0;
+#X connect 0 1 18 0;
+#X connect 1 0 0 0;
+#X connect 2 0 19 0;
+#X connect 3 0 19 0;
+#X connect 4 0 5 0;
+#X connect 6 0 19 0;
+#X connect 7 0 13 0;
+#X connect 7 2 13 0;
+#X connect 8 0 12 0;
+#X connect 11 0 10 0;
+#X connect 12 0 17 0;
+#X connect 12 1 11 1;
+#X connect 13 0 15 0;
+#X connect 15 0 8 0;
+#X connect 16 0 14 0;
+#X connect 16 0 6 0;
+#X connect 17 0 11 0;
+#X connect 18 0 19 0;
+#X connect 19 0 7 0;
+#X connect 19 1 4 0;

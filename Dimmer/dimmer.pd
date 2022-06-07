@@ -1,0 +1,37 @@
+#N canvas 392 215 488 389 10;
+#X obj 9 32 vsl 15 128 0 255 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 12700 1;
+#X floatatom 9 193 5 0 0 0 - - -;
+#X obj 9 169 % 255;
+#X obj 73 147 select 0 1;
+#X obj 73 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 73 172 close;
+#X msg 83 212 ports;
+#X obj 90 262 route ports;
+#X obj 90 283 print port_list;
+#X text 94 123 ON/OFF;
+#X text 127 211 imprime los puertos disponibles en la ventana de mensajes
+;
+#X text 33 26 modifique el cursor del desplazador para modificar la
+intensidad del LED;
+#X obj 9 241 comport 3 9600;
+#X text 107 241 IMPORTANTE: configurar primer parámetro según puerto
+usado;
+#X text 7 -58 Dimmer Este patch envía un número binario de 0 a 255
+hacia el puerto serie conectado a una placa Arduino. Modifica la intensidad
+de brillo de un LED conectado al Arduino. 27 Sept 2010 por Scott Fitzgerald
+\, basado en el ejemplo Dimmer Max/MSP por by David Mellis \, Tom Igoe
+y yo mismo.;
+#X msg 123 172 open 3;
+#X connect 0 0 2 0;
+#X connect 1 0 12 0;
+#X connect 2 0 1 0;
+#X connect 3 0 5 0;
+#X connect 3 1 15 0;
+#X connect 4 0 3 0;
+#X connect 5 0 12 0;
+#X connect 6 0 12 0;
+#X connect 7 0 8 0;
+#X connect 12 1 7 0;
+#X connect 15 0 12 0;
